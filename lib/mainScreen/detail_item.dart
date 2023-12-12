@@ -32,7 +32,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                           shape: CircleBorder(),
                         ),
                         child: IconButton(
-                          icon: const Icon(Icons.menu_open),
+                          icon: const Icon(Icons.chevron_left_rounded),
                           color: Colors.white,
                           onPressed: () {
                             Navigator.pop(context);

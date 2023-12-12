@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'mainScreen/screen_one.dart';
+import 'mainScreen/home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -62,7 +62,7 @@ class _SplashState extends State<Splash> {
 
 Route _createRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScreenOne(),
+    pageBuilder: (context, animation, secondaryAnimation) => const Home(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;
