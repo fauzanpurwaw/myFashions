@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import '../detail_item.dart';
 
-class FirstDisplay extends StatelessWidget {
+class FirstDisplay extends StatefulWidget {
   const FirstDisplay({super.key});
 
+  @override
+  State<FirstDisplay> createState() => _FirstDisplayState();
+}
+
+class _FirstDisplayState extends State<FirstDisplay> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +51,9 @@ class FirstDisplay extends StatelessWidget {
                               child: InkWell(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(_createRoute());
+                                },
                                 child: const Image(
                                     fit: BoxFit.fitWidth,
                                     width: 160,
@@ -104,7 +112,9 @@ class FirstDisplay extends StatelessWidget {
                               child: InkWell(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(_createRoute());
+                                },
                                 child: const Image(
                                     fit: BoxFit.fitWidth,
                                     width: 160,
@@ -167,7 +177,9 @@ class FirstDisplay extends StatelessWidget {
                               child: InkWell(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(_createRoute());
+                                },
                                 child: const Image(
                                     fit: BoxFit.fitWidth,
                                     width: 160,
@@ -226,7 +238,9 @@ class FirstDisplay extends StatelessWidget {
                               child: InkWell(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(_createRoute());
+                                },
                                 child: const Image(
                                     fit: BoxFit.fitWidth,
                                     width: 160,
@@ -289,7 +303,9 @@ class FirstDisplay extends StatelessWidget {
                               child: InkWell(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(_createRoute());
+                                },
                                 child: const Image(
                                     fit: BoxFit.fitWidth,
                                     width: 160,
@@ -348,7 +364,9 @@ class FirstDisplay extends StatelessWidget {
                               child: InkWell(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).push(_createRoute());
+                                },
                                 child: const Image(
                                     fit: BoxFit.fitWidth,
                                     width: 160,
@@ -407,4 +425,23 @@ class FirstDisplay extends StatelessWidget {
       ],
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const ScrDetailItem(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
