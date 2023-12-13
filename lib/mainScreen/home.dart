@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_dua/mainScreen/categories.dart';
+import 'package:latihan_dua/mainScreen/cart.dart';
 import 'package:latihan_dua/mainScreen/profile.dart';
 import 'components/salesBanner.dart';
 import 'components/searchBar.dart';
@@ -18,7 +19,7 @@ class _HomeState extends State<Home> {
   static const List<Widget> display = [
     HomeBody(),
     CategoriesScreen(),
-    ProfileScreen(),
+    CartScreen(),
   ];
 
   int selectedIndex = 0;
@@ -67,7 +68,9 @@ class _HomeState extends State<Home> {
                         child: IconButton(
                           icon: const Icon(Icons.person_3),
                           color: Colors.black54,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(_createRoute());
+                          },
                         ),
                       ),
                     ),
@@ -78,6 +81,7 @@ class _HomeState extends State<Home> {
           onTap: onItemTapped,
           unselectedItemColor: Colors.grey,
           selectedItemColor: Colors.black,
+          // selectedIconTheme: IconThemeData(size: 10),
           currentIndex: selectedIndex,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -89,8 +93,8 @@ class _HomeState extends State<Home> {
               label: 'Categories',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
+              icon: Icon(Icons.shopping_basket),
+              label: 'Cart',
             ),
           ],
         ),
@@ -135,4 +139,22 @@ class HomeBody extends StatelessWidget {
       ],
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const ScrProfile(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

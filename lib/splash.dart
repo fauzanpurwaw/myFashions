@@ -13,8 +13,10 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2),
-        () => Navigator.of(context).push(_createRoute()));
+    Timer(const Duration(seconds: 2), () {
+      Navigator.of(context).pop(const Splash());
+      Navigator.of(context).push(_createRoute());
+    });
   }
 
   @override
