@@ -10,6 +10,10 @@ Project latihan yang bertemakan E-Commerce
 
 ![App Screenshot](previews/home_screen.jpg)
 
+## Detail Item Screen ---
+
+![App Screenshot](previews/itemDetail_screen.jpg)
+
 
 ## Profile Screen ---
 
