@@ -6,7 +6,6 @@ import 'components/salesBanner.dart';
 import 'components/searchBar.dart';
 import 'components/header.dart';
 import 'components/firstDispay.dart';
-import 'detail_item.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,14 +15,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //init
   static const List<Widget> display = [
     HomeBody(),
     CategoriesScreen(),
     CartScreen(),
   ];
 
+  //variable
   int selectedIndex = 0;
 
+  //function
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -38,44 +40,47 @@ class _HomeState extends State<Home> {
       theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
       home: Scaffold(
         appBar: AppBar(
-            toolbarHeight: 80,
-            elevation: 0,
-            flexibleSpace: Container(
-                // color: Colors.amber,
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Center(
-                      child: Ink(
-                        decoration: const ShapeDecoration(
-                          color: Colors.black,
-                          shape: CircleBorder(),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.menu_open),
-                          color: Colors.white,
-                          onPressed: () {},
-                        ),
-                      ),
+          toolbarHeight: 80,
+          elevation: 0,
+          flexibleSpace: Container(
+            // color: Colors.amber,
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Center(
+                  child: Ink(
+                    decoration: const ShapeDecoration(
+                      color: Colors.black,
+                      shape: CircleBorder(),
                     ),
-                    Center(
-                      child: Ink(
-                        decoration: const ShapeDecoration(
-                          color: Color.fromARGB(221, 221, 221, 221),
-                          shape: CircleBorder(),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.person_3),
-                          color: Colors.black54,
-                          onPressed: () {
-                            Navigator.of(context).push(_createRoute());
-                          },
-                        ),
-                      ),
+                    child: IconButton(
+                      icon: const Icon(Icons.menu_open),
+                      color: Colors.white,
+                      onPressed: () {},
                     ),
-                  ],
-                ))),
+                  ),
+                ),
+                Center(
+                  child: Ink(
+                    decoration: const ShapeDecoration(
+                      color: Color.fromARGB(221, 221, 221, 221),
+                      shape: CircleBorder(),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.person_3),
+                      color: Colors.black54,
+                      onPressed: () {
+                        Navigator.of(context)
+                            .push(_createRoute(const ScrProfile()));
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         body: display.elementAt(selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           onTap: onItemTapped,
@@ -141,9 +146,9 @@ class HomeBody extends StatelessWidget {
   }
 }
 
-Route _createRoute() {
+Route _createRoute(Widget screen) {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const ScrProfile(),
+    pageBuilder: (context, animation, secondaryAnimation) => screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;

@@ -270,7 +270,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                           Container(
                             height: 90,
                             margin: EdgeInsets.only(top: 20),
-                            width: MediaQuery.of(context).size.width - 70,
+                            width: MediaQuery.of(context).size.width - 50,
                             child: const Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -283,8 +283,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                 ),
                                 Text(
                                   "Get a little lift from these Sam Edelman sandals featuring ruched straps and leather lace-up ties, while a braided jute sole makes a fresh statement for summer.",
-                                  maxLines: 6,
-                                  overflow: TextOverflow.ellipsis,
+                                  // overflow: TextOverflow.ellipsis,
                                 )
                               ],
                             ),
@@ -299,6 +298,12 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
           ),
         ]),
         bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+              border: Border(
+                  top: BorderSide(
+            color: Colors.grey,
+            width: 0.5,
+          ))),
           padding: const EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           height: 90,

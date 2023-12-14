@@ -47,11 +47,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         Container(
                           width: 130,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(
-                                Icons.fiber_new,
-                                color: Colors.white,
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.fiber_new,
+                                  color: Colors.white,
+                                ),
                               ),
                               Text(
                                 "New Arrivals",
@@ -89,11 +91,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         Container(
                           width: 130,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(
-                                Icons.attribution,
-                                color: Colors.white,
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.fiber_new,
+                                  color: Colors.white,
+                                ),
                               ),
                               Text(
                                 "Clothes",
@@ -131,11 +135,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         Container(
                           width: 130,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(
-                                Icons.shopping_bag,
-                                color: Colors.white,
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.shopping_bag,
+                                  color: Colors.white,
+                                ),
                               ),
                               Text(
                                 "Bags",
@@ -173,13 +179,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         Container(
                           width: 130,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(
-                                Icons.electric_bolt_sharp,
-                                color: Colors.white,
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: const Icon(
+                                  Icons.electric_bolt_sharp,
+                                  color: Colors.white,
+                                ),
                               ),
-                              Text(
+                              const Text(
                                 "Electronics",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16),
@@ -187,7 +195,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             ],
                           ),
                         ),
-                        Text(
+                        const Text(
                           '133 Products',
                           style: TextStyle(color: Colors.white, fontSize: 10),
                         )

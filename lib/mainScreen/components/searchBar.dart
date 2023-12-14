@@ -8,30 +8,23 @@ class SearchingBar extends StatelessWidget {
     return Wrap(
       children: [
         Container(
-          width: 280,
+          width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Color.fromARGB(233, 233, 233, 233)),
-                width: 260,
+                width: 280,
                 height: 50,
-                padding: const EdgeInsets.fromLTRB(14, 0, 14, 0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: () {},
-                      color: Colors.black,
-                    ),
-                    const Text(
-                      "search...",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 156, 156, 156)),
-                    )
-                  ],
+                child: SearchBar(
+                  backgroundColor: MaterialStateColor.resolveWith(
+                      (states) => Color.fromARGB(233, 233, 233, 233)),
+                  elevation: MaterialStateProperty.all(0),
+                  hintText: "Search...",
+                  leading: const Icon(Icons.search),
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.symmetric(horizontal: 20)),
+                  hintStyle:
+                      MaterialStateProperty.all(TextStyle(color: Colors.grey)),
                 ),
               ),
             ],
