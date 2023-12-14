@@ -3,7 +3,7 @@
 Project latihan yang bertemakan E-Commerce
 
 
-#DEMO
+# DEMO
 ## Splash Screen
 
 ![App Screenshot](previews/splash_screen.jpg)
