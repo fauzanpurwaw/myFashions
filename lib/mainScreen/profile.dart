@@ -65,8 +65,9 @@ class _ScrProfileState extends State<ScrProfile> {
                     Container(
                       height: 120,
                       width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(border: Border()),
                       child: Card(
-                        elevation: 5,
+                        elevation: 10,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -119,7 +120,324 @@ class _ScrProfileState extends State<ScrProfile> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(border: Border()),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.person_2),
+                                      ),
+                                      Text(
+                                        "Personal Details",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.shopping_bag_rounded),
+                                      ),
+                                      Text(
+                                        "My Order",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.favorite_rounded),
+                                      ),
+                                      Text(
+                                        "Favorites",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.credit_card_rounded),
+                                      ),
+                                      Text(
+                                        "My Card",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.settings_rounded),
+                                      ),
+                                      Text(
+                                        "Settings",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(border: Border()),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                          right: 10, top: 2),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Row(children: [
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(right: 20),
+                                          child: Icon(Icons.person_2),
+                                        ),
+                                        Text(
+                                          "Personal Details",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ]),
+                                    ),
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.chevron_right_rounded))
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.shopping_bag_rounded),
+                                      ),
+                                      Text(
+                                        "My Order",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.favorite_rounded),
+                                      ),
+                                      Text(
+                                        "Favorites",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.credit_card_rounded),
+                                      ),
+                                      Text(
+                                        "My Card",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 10, top: 2),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Row(children: [
+                                      Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Icon(Icons.settings_rounded),
+                                      ),
+                                      Text(
+                                        "Settings",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ]),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.chevron_right_rounded))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )

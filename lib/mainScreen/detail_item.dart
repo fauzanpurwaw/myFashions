@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ScrDetailItem extends StatefulWidget {
   final itemName;
@@ -10,6 +11,9 @@ class ScrDetailItem extends StatefulWidget {
 
 class _ScrDetailItemState extends State<ScrDetailItem> {
   int stockCounter = 1;
+  int price = 198;
+
+  final numFormat = new NumberFormat("#,##0.00", "en_US");
 
   @override
   Widget build(BuildContext context) {
@@ -313,7 +317,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -321,7 +325,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       Text(
-                        "\$198.00",
+                        "\$" + numFormat.format(price * stockCounter),
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -331,7 +335,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                     onTap: () {},
                     highlightColor: Colors.white,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
                       width: 180,
                       height: 60,
                       decoration: BoxDecoration(
