@@ -46,6 +46,7 @@ class _HomeState extends State<Home> {
             // color: Colors.amber,
             padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Center(
@@ -113,7 +114,11 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      color: Colors.white,
+      child: ListView(
       padding: const EdgeInsets.all(20),
       children: <Widget>[
         Container(
@@ -142,6 +147,7 @@ class HomeBody extends StatelessWidget {
           child: const FirstDisplay(),
         ),
       ],
+    ),
     );
   }
 }

@@ -45,7 +45,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 130,
+                          
                           child: Row(
                             children: [
                               Container(
@@ -89,13 +89,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 130,
+                          
                           child: Row(
                             children: [
                               Container(
                                 margin: const EdgeInsets.only(right: 10),
                                 child: Icon(
-                                  Icons.fiber_new,
+                                  Icons.person_rounded,
                                   color: Colors.white,
                                 ),
                               ),
@@ -133,7 +133,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 130,
+                          
                           child: Row(
                             children: [
                               Container(
@@ -177,7 +177,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 130,
+                          
                           child: Row(
                             children: [
                               Container(

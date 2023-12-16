@@ -21,6 +21,7 @@ class _CartScreenState extends State<CartScreen> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
+      color: Colors.white,
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -39,7 +40,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height / 3,
                   child: ListView(
                     children: [
                       Container(
@@ -48,6 +49,7 @@ class _CartScreenState extends State<CartScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(border: Border()),
                         child: Card(
+                          color: Colors.white,
                           elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -135,7 +137,7 @@ class _CartScreenState extends State<CartScreen> {
                                           icon: Icon(Icons.remove_circle)),
                                       Container(
                                         width: 80,
-                                        height: 26,
+                                        height: 20,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10),
                                         decoration: const BoxDecoration(
@@ -185,6 +187,7 @@ class _CartScreenState extends State<CartScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(border: Border()),
                         child: Card(
+                          color: Colors.white,
                           elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -272,7 +275,7 @@ class _CartScreenState extends State<CartScreen> {
                                           icon: Icon(Icons.remove_circle)),
                                       Container(
                                         width: 80,
-                                        height: 26,
+                                        height: 20,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10),
                                         decoration: const BoxDecoration(
@@ -334,7 +337,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(vertical: 2),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -352,7 +355,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(vertical: 2),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -370,7 +373,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(vertical: 2),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

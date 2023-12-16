@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_dua/mainScreen/home.dart';
 import 'splash.dart';
 
 void main() {
