@@ -20,8 +20,7 @@ class _ScrProfileState extends State<ScrProfile> {
               toolbarHeight: 80,
               elevation: 0,
               flexibleSpace: Container(
-                  // color: Colors.amber,
-                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -58,6 +57,7 @@ class _ScrProfileState extends State<ScrProfile> {
           body: ListView(
             children: [
               Container(
+                color: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
                 child: Column(
@@ -65,7 +65,7 @@ class _ScrProfileState extends State<ScrProfile> {
                     Container(
                       height: 120,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(border: Border()),
+                      decoration: BoxDecoration(border: Border(),color: Colors.white),
                       child: Card(
                         elevation: 10,
                         shape: RoundedRectangleBorder(

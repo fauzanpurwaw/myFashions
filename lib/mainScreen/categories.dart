@@ -14,6 +14,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return ListView(
       children: [
         Container(
+          color: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [

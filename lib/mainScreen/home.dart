@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
           elevation: 0,
           flexibleSpace: Container(
             // color: Colors.amber,
-            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+            padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
                       shape: CircleBorder(),
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.menu_open),
+                      icon: const Icon(Icons.shopping_basket_rounded),
                       color: Colors.white,
                       onPressed: () {},
                     ),
@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
               label: 'Categories',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket),
+              icon: Icon(Icons.shopping_cart_rounded),
               label: 'Cart',
             ),
           ],
