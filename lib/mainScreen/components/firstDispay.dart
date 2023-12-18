@@ -70,7 +70,14 @@ class _FirstDisplayState extends State<FirstDisplay> {
           height: MediaQuery.of(context).size.height,
           child: products.isEmpty
               ? Wrap(
-                  children: [CircularProgressIndicator()],
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
                 )
               : GridView.count(
                   crossAxisCount: 3,
@@ -111,15 +118,21 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 2),
-                                      child: Text(
-                                        products[index].title.toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
-                                      ),
-                                    ),
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 2),
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                _createRoute(
+                                                    products[index].id));
+                                          },
+                                          child: Text(
+                                            products[index].title.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                        )),
                                     Container(
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 2),

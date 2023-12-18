@@ -8,8 +8,8 @@ class SalesBanner extends StatelessWidget {
     return Wrap(
       children: [
         Container(
-          padding: const EdgeInsets.fromLTRB(14, 18, 14, 18),
-          margin: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+          padding: const EdgeInsets.fromLTRB(14, 24, 14, 20),
+          margin: const EdgeInsets.fromLTRB(0, 10, 20, 0),
           width: 260,
           height: 180,
           decoration: const BoxDecoration(
@@ -30,7 +30,7 @@ class SalesBanner extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 28),
                 child: const Text(
                   "With code:FSCREATION",
                   style: TextStyle(
@@ -47,9 +47,9 @@ class SalesBanner extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 20,),
+                          padding: EdgeInsets.all(16),
                           backgroundColor: Colors.black),
-                      child: Text("Get Now", style: TextStyle(color: Colors.white),))
+                      child: Text("Get Now"))
                 ],
               )
             ],

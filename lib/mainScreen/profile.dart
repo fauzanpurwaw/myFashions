@@ -16,7 +16,6 @@ class _ScrProfileState extends State<ScrProfile> {
       title: widget.itemName,
       theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
       home: Scaffold(
-<<<<<<< HEAD
         appBar: AppBar(
             toolbarHeight: 80,
             elevation: 0,
@@ -31,62 +30,6 @@ class _ScrProfileState extends State<ScrProfile> {
                         decoration: const ShapeDecoration(
                           color: Colors.black,
                           shape: CircleBorder(),
-=======
-          appBar: AppBar(
-              toolbarHeight: 80,
-              elevation: 0,
-              flexibleSpace: Container(
-                  padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Center(
-                        child: Ink(
-                          decoration: const ShapeDecoration(
-                            color: Colors.black,
-                            shape: CircleBorder(),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.chevron_left_rounded),
-                            color: Colors.white,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: Ink(
-                          decoration: const ShapeDecoration(
-                            color: Color.fromARGB(221, 221, 221, 221),
-                            shape: CircleBorder(),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.person_3),
-                            color: Colors.black54,
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))),
-          body: ListView(
-            children: [
-              Container(
-                color: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 120,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(border: Border(),color: Colors.white),
-                      child: Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
->>>>>>> 77d94fcbd3ea9e8398d33aa3fe2fac8eff554853
                         ),
                         child: IconButton(
                           icon: const Icon(Icons.chevron_left_rounded),

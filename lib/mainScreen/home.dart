@@ -44,9 +44,8 @@ class _HomeState extends State<Home> {
           elevation: 0,
           flexibleSpace: Container(
             // color: Colors.amber,
-            padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Center(
@@ -56,7 +55,7 @@ class _HomeState extends State<Home> {
                       shape: CircleBorder(),
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.shopping_basket_rounded),
+                      icon: const Icon(Icons.menu_open),
                       color: Colors.white,
                       onPressed: () {},
                     ),
@@ -99,7 +98,7 @@ class _HomeState extends State<Home> {
               label: 'Categories',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_rounded),
+              icon: Icon(Icons.shopping_basket),
               label: 'Cart',
             ),
           ],
@@ -115,7 +114,6 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-<<<<<<< HEAD
       alignment: Alignment.center,
       child: Container(
         constraints: const BoxConstraints(maxWidth: 680),
@@ -149,41 +147,6 @@ class HomeBody extends StatelessWidget {
           ],
         ),
       ),
-=======
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      color: Colors.white,
-      child: ListView(
-      padding: const EdgeInsets.all(20),
-      children: <Widget>[
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 100,
-          child: const HeaderScreenOne(),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
-          alignment: Alignment.center,
-          child: const SearchingBar(),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-          height: 190,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: const <Widget>[
-              SalesBanner(),
-              SalesBanner(),
-            ],
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-          child: const FirstDisplay(),
-        ),
-      ],
-    ),
->>>>>>> 77d94fcbd3ea9e8398d33aa3fe2fac8eff554853
     );
   }
 }
