@@ -67,6 +67,50 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                         color: Colors.white, fontSize: 16),
                                   )
                                 ],
+    return ListView(
+      children: [
+        Container(
+          color: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Column(
+            children: [
+              SearchBar(
+                backgroundColor: MaterialStateColor.resolveWith(
+                    (states) => Color.fromARGB(233, 233, 233, 233)),
+                elevation: MaterialStateProperty.all(0),
+                hintText: "Search...",
+                leading: const Icon(Icons.search),
+                padding: MaterialStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 20)),
+                hintStyle:
+                    MaterialStateProperty.all(TextStyle(color: Colors.grey)),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    padding: const EdgeInsets.symmetric(horizontal: 36),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.fiber_new,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             Text(
@@ -79,6 +123,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -112,6 +157,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                         color: Colors.white, fontSize: 16),
                                   )
                                 ],
+=======
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    padding: const EdgeInsets.symmetric(horizontal: 36),
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.person_rounded,
+                                  color: Colors.white,
+                                ),
+>>>>>>> 77d94fcbd3ea9e8398d33aa3fe2fac8eff554853
                               ),
                             ),
                             Text(
@@ -124,6 +199,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -157,6 +233,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                         color: Colors.white, fontSize: 16),
                                   )
                                 ],
+=======
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    padding: const EdgeInsets.symmetric(horizontal: 36),
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: Icon(
+                                  Icons.shopping_bag,
+                                  color: Colors.white,
+                                ),
+>>>>>>> 77d94fcbd3ea9e8398d33aa3fe2fac8eff554853
                               ),
                             ),
                             Text(
@@ -169,6 +275,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -202,6 +309,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                         color: Colors.white, fontSize: 16),
                                   )
                                 ],
+=======
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    padding: const EdgeInsets.symmetric(horizontal: 36),
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                child: const Icon(
+                                  Icons.electric_bolt_sharp,
+                                  color: Colors.white,
+                                ),
+>>>>>>> 77d94fcbd3ea9e8398d33aa3fe2fac8eff554853
                               ),
                             ),
                             const Text(
