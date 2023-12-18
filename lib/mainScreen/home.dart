@@ -113,35 +113,40 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: <Widget>[
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 100,
-          child: const HeaderScreenOne(),
+    return Container(
+      alignment: Alignment.center,
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 680),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: <Widget>[
+            Container(
+              alignment: Alignment.centerLeft,
+              height: 100,
+              child: const HeaderScreenOne(),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+              alignment: Alignment.center,
+              child: const SearchingBar(),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              height: 190,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: List.generate(5, (index) {
+                  return const SalesBanner();
+                }),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              child: const FirstDisplay(),
+            ),
+          ],
         ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
-          alignment: Alignment.center,
-          child: const SearchingBar(),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-          height: 190,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: const <Widget>[
-              SalesBanner(),
-              SalesBanner(),
-            ],
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-          child: const FirstDisplay(),
-        ),
-      ],
+      ),
     );
   }
 }
