@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'mainScreen/home.dart';
+import 'home.dart';
+import 'package:latihan_dua/routes/routes.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -15,7 +16,7 @@ class _SplashState extends State<Splash> {
     super.initState();
     Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pop(const Splash());
-      Navigator.of(context).push(_createRoute());
+      Navigator.of(context).push(AnimationRoute(Home()));
     });
   }
 
@@ -23,7 +24,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "splash screen",
+      title: "E-Commerce",
       home: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -60,22 +61,4 @@ class _SplashState extends State<Splash> {
       ),
     );
   }
-}
-
-Route _createRoute() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => const Home(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }

@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_dua/routes/routes.dart';
+import 'package:latihan_dua/screens/home.dart';
 
-class SearchingBar extends StatelessWidget {
-  const SearchingBar({super.key});
+class SearchingBar extends StatefulWidget {
+  SearchingBar({super.key, required this.setSelectedIndex});
 
+  @override
+  State<SearchingBar> createState() => _SearchingBarState();
+
+  Function setSelectedIndex;
+}
+
+class _SearchingBarState extends State<SearchingBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,7 +52,9 @@ class SearchingBar extends StatelessWidget {
                 shape: CircleBorder(),
               ),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.setSelectedIndex(1);
+                },
                 icon: const Icon(Icons.filter_list_rounded),
                 color: Colors.white,
               ),

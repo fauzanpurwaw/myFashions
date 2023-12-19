@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:latihan_dua/album/products.dart';
 import 'dart:convert';
+import 'package:latihan_dua/routes/routes.dart';
+import 'home.dart';
 
 class ScrDetailItem extends StatefulWidget {
   final int? id;
@@ -99,7 +101,11 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                 icon: const Icon(Icons.chevron_left),
                                 color: Colors.white,
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop(context);
+                                  Navigator.of(context).push(AnimationRoute(
+                                      Home(),
+                                      dx: -1.0,
+                                      dy: 0.0));
                                 },
                               ),
                             ),

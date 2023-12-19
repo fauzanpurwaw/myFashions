@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:latihan_dua/mainScreen/categories.dart';
-import 'package:latihan_dua/mainScreen/cart.dart';
-import 'package:latihan_dua/mainScreen/profile.dart';
-import 'components/salesBanner.dart';
-import 'components/searchBar.dart';
-import 'components/header.dart';
-import 'components/firstDispay.dart';
+import 'package:latihan_dua/screens/categories.dart';
+import 'package:latihan_dua/screens/cart.dart';
+import 'package:latihan_dua/screens/profile.dart';
+import '../components/salesBanner.dart';
+import '../components/searchBar.dart';
+import '../components/header.dart';
+import '../components/firstDispay.dart';
+import 'package:latihan_dua/routes/routes.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,13 +17,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //init
-  static const List<Widget> display = [
-    HomeBody(),
-    CategoriesScreen(),
-    CartScreen(),
-  ];
-
-  //variable
   int selectedIndex = 0;
 
   //function
@@ -34,6 +28,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> display = [
+      HomeBody(
+        setSelectedIndex: onItemTapped,
+      ),
+      const CategoriesScreen(),
+      const CartScreen(),
+    ];
+    //variable
+    print("im here");
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "E-Commerce",
@@ -72,7 +76,7 @@ class _HomeState extends State<Home> {
                       color: Colors.black54,
                       onPressed: () {
                         Navigator.of(context)
-                            .push(_createRoute(const ScrProfile()));
+                            .push(AnimationRoute(const ScrProfile()));
                       },
                     ),
                   ),
@@ -108,9 +112,16 @@ class _HomeState extends State<Home> {
   }
 }
 
-class HomeBody extends StatelessWidget {
-  const HomeBody({super.key});
+class HomeBody extends StatefulWidget {
+  const HomeBody({super.key, required this.setSelectedIndex});
 
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+
+  final Function setSelectedIndex;
+}
+
+class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -128,7 +139,9 @@ class HomeBody extends StatelessWidget {
             Container(
               margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
               alignment: Alignment.center,
-              child: const SearchingBar(),
+              child: SearchingBar(
+                setSelectedIndex: widget.setSelectedIndex,
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -149,22 +162,4 @@ class HomeBody extends StatelessWidget {
       ),
     );
   }
-}
-
-Route _createRoute(Widget screen) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => screen,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }

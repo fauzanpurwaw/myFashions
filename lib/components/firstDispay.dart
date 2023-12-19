@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../detail_item.dart';
+import '../screens/detail_item.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:latihan_dua/album/products.dart';
+import 'package:latihan_dua/routes/routes.dart';
 
 class FirstDisplay extends StatefulWidget {
   const FirstDisplay({super.key});
@@ -66,8 +67,8 @@ class _FirstDisplayState extends State<FirstDisplay> {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
-          height: MediaQuery.of(context).size.height,
+          margin: EdgeInsets.only(top: 20),
+          height: MediaQuery.of(context).size.height / 1.5,
           child: products.isEmpty
               ? Wrap(
                   children: [
@@ -102,7 +103,9 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                             Radius.circular(20)),
                                         onTap: () {
                                           Navigator.of(context).push(
-                                              _createRoute(products[index].id));
+                                              AnimationRoute(ScrDetailItem(
+                                                  id: products[index].id)));
+                                          // Navigator.of(context).pop();
                                         },
                                         child: Image.network(
                                           products[index].thumbnail.toString(),
@@ -123,8 +126,9 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                         child: InkWell(
                                           onTap: () {
                                             Navigator.of(context).push(
-                                                _createRoute(
-                                                    products[index].id));
+                                                AnimationRoute(ScrDetailItem(
+                                                    id: products[index].id)));
+                                            // Navigator.of(context).pop();
                                           },
                                           child: Text(
                                             products[index].title.toString(),
@@ -170,23 +174,4 @@ class _FirstDisplayState extends State<FirstDisplay> {
       ],
     );
   }
-}
-
-Route _createRoute(@required int id) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        ScrDetailItem(id: id),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
 }

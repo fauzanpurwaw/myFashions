@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/searchBar.dart';
+import '../components/searchBar.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
