@@ -58,6 +58,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       );
     }
     return Container(
+      color: Colors.white,
       alignment: Alignment.center,
       child: Container(
         constraints: BoxConstraints(maxWidth: 680),

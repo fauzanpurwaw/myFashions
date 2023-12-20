@@ -19,6 +19,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       alignment: Alignment.center,
       child: Container(
         constraints: BoxConstraints(maxWidth: 680),
