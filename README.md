@@ -2,10 +2,13 @@
 
 Project latihan yang bertemakan E-Commerce
 
-## Splash Screen --- Home Screen
+## Splash Screen
 
 ![App Screenshot](previews/splash_screen.jpg)
+
+##  Home Screen
 ![App Screenshot](previews/home_screen.jpg)
+![App Screenshot](previews/home_screen(2).jpg)
 
 ## Cart Screen --- Detail Item Screen
 
