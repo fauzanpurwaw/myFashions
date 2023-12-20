@@ -76,7 +76,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
         ),
         Container(
           margin: EdgeInsets.only(top: 20),
-          height: MediaQuery.of(context).size.height / 1.6,
+          height: MediaQuery.of(context).size.width / 3 * 2.2,
           child: products == null
               ? Wrap(
                   children: [
@@ -99,14 +99,16 @@ class _FirstDisplayState extends State<FirstDisplay> {
                       return Container(
                         child: Flexible(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Flexible(
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                  child: Flexible(
-                                    child: InkWell(
+                                child: Container(
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    child: Flexible(
+                                      child: InkWell(
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(20)),
                                         onTap: () {
@@ -115,23 +117,36 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                                   id: products![index].id)));
                                           // Navigator.of(context).pop();
                                         },
-                                        child: Image.network(
-                                          products![index].thumbnail.toString(),
-                                          fit: BoxFit.cover,
-                                          height: 300,
+                                        child: Flexible(
+                                            child: Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    products![index].thumbnail),
+                                                fit: BoxFit.fill),
+                                          ),
                                         )),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                               Container(
                                 margin: const EdgeInsets.symmetric(vertical: 8),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4),
+                                constraints: BoxConstraints(maxHeight: 70),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 2),
-                                        child: InkWell(
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            child: InkWell(
                                           onTap: () {
                                             Navigator.of(context).push(
                                                 AnimationRoute(ScrDetailItem(
@@ -143,22 +158,24 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         )),
-                                    Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 2),
-                                      child: Text(
-                                        products![index].category.toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
-                                            fontSize: 11),
-                                      ),
+                                        Container(
+                                          child: Text(
+                                            products![index]
+                                                .category
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey,
+                                                fontSize: 11),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 2),
                                       child: Text(
                                         "\$" +
                                             numFormat

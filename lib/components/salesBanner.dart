@@ -30,7 +30,7 @@ class SalesBanner extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 10, 0, 28),
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 18),
                 child: const Text(
                   "With code:FSCREATION",
                   style: TextStyle(
