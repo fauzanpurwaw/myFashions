@@ -155,7 +155,15 @@ class _HomeBodyState extends State<HomeBody> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: const FirstDisplay(),
+              child: const FirstDisplay(
+                category: "smartphones",
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+              child: const FirstDisplay(
+                category: "laptops",
+              ),
             ),
           ],
         ),

@@ -5,20 +5,23 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:latihan_dua/album/products.dart';
 import 'package:latihan_dua/routes/routes.dart';
+import 'package:latihan_dua/screens/category.dart';
 
 class FirstDisplay extends StatefulWidget {
-  const FirstDisplay({super.key});
+  const FirstDisplay({super.key, required this.category});
 
   @override
   State<FirstDisplay> createState() => _FirstDisplayState();
+
+  final String category;
 }
 
 class _FirstDisplayState extends State<FirstDisplay> {
-  List products = [];
+  List? products;
 
   Future<List> fetchData() async {
-    final response =
-        await http.get(Uri.parse('https://dummyjson.com/products?limit=6'));
+    final response = await http.get(
+        Uri.parse('https://dummyjson.com/product/category/${widget.category}'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body)['products'];
       setState(() {
@@ -26,7 +29,9 @@ class _FirstDisplayState extends State<FirstDisplay> {
         print('Data fetched successfully!');
       });
 
-      return products;
+      print(data);
+
+      return data;
     } else {
       print('Failed to load data. Status code: ${response.statusCode}');
       throw Exception("gagal");
@@ -53,12 +58,15 @@ class _FirstDisplayState extends State<FirstDisplay> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                "New Arrivals",
+              Text(
+                widget.category.toUpperCase(),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(AnimationRoute(
+                        CategoryScreen(category: widget.category)));
+                  },
                   child: const Text(
                     "View All",
                     style: TextStyle(color: Color.fromARGB(255, 134, 134, 134)),
@@ -68,12 +76,12 @@ class _FirstDisplayState extends State<FirstDisplay> {
         ),
         Container(
           margin: EdgeInsets.only(top: 20),
-          height: MediaQuery.of(context).size.height / 1.5,
-          child: products.isEmpty
+          height: MediaQuery.of(context).size.height / 1.6,
+          child: products == null
               ? Wrap(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.only(top: 40),
                       child: CircularProgressIndicator(
                         color: Colors.black,
                       ),
@@ -86,7 +94,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   children: List.generate(
-                    products.length,
+                    products!.length,
                     (index) {
                       return Container(
                         child: Flexible(
@@ -104,11 +112,11 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                         onTap: () {
                                           Navigator.of(context).push(
                                               AnimationRoute(ScrDetailItem(
-                                                  id: products[index].id)));
+                                                  id: products![index].id)));
                                           // Navigator.of(context).pop();
                                         },
                                         child: Image.network(
-                                          products[index].thumbnail.toString(),
+                                          products![index].thumbnail.toString(),
                                           fit: BoxFit.cover,
                                           height: 300,
                                         )),
@@ -127,11 +135,11 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                           onTap: () {
                                             Navigator.of(context).push(
                                                 AnimationRoute(ScrDetailItem(
-                                                    id: products[index].id)));
+                                                    id: products![index].id)));
                                             // Navigator.of(context).pop();
                                           },
                                           child: Text(
-                                            products[index].title.toString(),
+                                            products![index].title.toString(),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14),
@@ -141,7 +149,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 2),
                                       child: Text(
-                                        products[index].category.toString(),
+                                        products![index].category.toString(),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.grey,
@@ -154,7 +162,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                       child: Text(
                                         "\$" +
                                             numFormat
-                                                .format(products[index].price),
+                                                .format(products![index].price),
                                         style: TextStyle(
                                             fontWeight: FontWeight.w900,
                                             fontSize: 14),
