@@ -406,17 +406,19 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                     highlightColor: Colors.white,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 22),
-                      width: 180,
                       height: 60,
                       decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(50)),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            Icons.shopping_bag_outlined,
-                            color: Colors.white,
+                          Container(
+                            margin: const EdgeInsets.only(right: 6),
+                            child: Icon(
+                              Icons.shopping_bag_outlined,
+                              color: Colors.white,
+                            ),
                           ),
                           Text(
                             "Add to cart",

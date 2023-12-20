@@ -21,8 +21,8 @@ class SalesBanner extends StatelessWidget {
               const Text(
                 "50% Off",
                 style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
               ),
               const Text(
@@ -30,7 +30,7 @@ class SalesBanner extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 10, 0, 18),
+                margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                 child: const Text(
                   "With code:FSCREATION",
                   style: TextStyle(
@@ -47,9 +47,8 @@ class SalesBanner extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          padding: EdgeInsets.all(16),
                           backgroundColor: Colors.black),
-                      child: Text("Get Now"))
+                      child: Text("Get Now",style: TextStyle(color: Colors.white),))
                 ],
               )
             ],
