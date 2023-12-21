@@ -64,31 +64,28 @@ class _CategoryScreenState extends State<CategoryScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Center(
-                    child: Row(
-                  children: [
-                    Ink(
-                      decoration: const ShapeDecoration(
-                        color: Colors.black,
-                        shape: CircleBorder(),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.chevron_left_rounded),
-                        color: Colors.white,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
+                  child: Ink(
+                    decoration: const ShapeDecoration(
+                      color: Colors.black,
+                      shape: CircleBorder(),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 15),
-                      child: Text(
-                        widget.category,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
+                    child: IconButton(
+                      icon: const Icon(Icons.chevron_left_rounded),
+                      color: Colors.white,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                  ],
-                )),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 15),
+                  child: Text(
+                    widget.category.toUpperCase(),
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Center(
                   child: Ink(
                     decoration: const ShapeDecoration(
@@ -106,107 +103,122 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
           ),
         ),
-        body: GridView.count(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          crossAxisCount: 3,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-          childAspectRatio: 0.5,
-          children: products == null
-              ? [Center(child: CircularProgressIndicator())]
-              : List.generate(
-                  products!.length,
-                  (index) {
-                    return Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Container(
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                child: InkWell(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  onTap: () {
-                                    Navigator.of(context).push(AnimationRoute(
-                                        ScrDetailItem(
-                                            id: products![index].id)));
-                                    // Navigator.of(context).pop();
-                                  },
-                                  child: Flexible(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                products![index].thumbnail),
-                                            fit: BoxFit.fill),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                            constraints: BoxConstraints(maxHeight: 70),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        child: InkWell(
+        body: Container(
+          alignment: Alignment.center,
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 680),
+            height: MediaQuery.of(context).size.height,
+            child: products == null
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ))
+                : GridView.count(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                    childAspectRatio: 0.5,
+                    children: List.generate(
+                      products!.length,
+                      (index) {
+                        return Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    child: InkWell(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20)),
                                       onTap: () {
                                         Navigator.of(context).push(
                                             AnimationRoute(ScrDetailItem(
                                                 id: products![index].id)));
                                         // Navigator.of(context).pop();
                                       },
-                                      child: Text(
-                                        products![index].title.toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                                      child: Flexible(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    products![index].thumbnail),
+                                                fit: BoxFit.fill),
+                                          ),
+                                        ),
                                       ),
-                                    )),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.symmetric(vertical: 8),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4),
+                                constraints: BoxConstraints(maxHeight: 70),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            child: InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                AnimationRoute(ScrDetailItem(
+                                                    id: products![index].id)));
+                                            // Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            products![index].title.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        )),
+                                        Container(
+                                          child: Text(
+                                            products![index]
+                                                .category
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey,
+                                                fontSize: 11),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                     Container(
                                       child: Text(
-                                        products![index].category.toString(),
+                                        "\$" +
+                                            numFormat
+                                                .format(products![index].price),
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey,
-                                            fontSize: 11),
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 14),
                                       ),
                                     ),
                                   ],
                                 ),
-                                Container(
-                                  child: Text(
-                                    "\$" +
-                                        numFormat
-                                            .format(products![index].price),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 14),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  ),
+          ),
         ),
       ),
     );

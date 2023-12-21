@@ -11,7 +11,6 @@ class SalesBanner extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(14, 24, 14, 20),
           margin: const EdgeInsets.fromLTRB(0, 10, 20, 0),
           width: 260,
-          height: 180,
           decoration: const BoxDecoration(
               color: Color.fromARGB(245, 226, 226, 226),
               borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -30,7 +29,7 @@ class SalesBanner extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+                margin: const EdgeInsets.fromLTRB(0, 4, 0, 10),
                 child: const Text(
                   "With code:FSCREATION",
                   style: TextStyle(
@@ -48,7 +47,10 @@ class SalesBanner extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50),
                           ),
                           backgroundColor: Colors.black),
-                      child: Text("Get Now",style: TextStyle(color: Colors.white),))
+                      child: Text(
+                        "Get Now",
+                        style: TextStyle(color: Colors.white),
+                      ))
                 ],
               )
             ],

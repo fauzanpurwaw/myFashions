@@ -13,17 +13,15 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  final TextEditingController searchBarController = TextEditingController();
+  List<dynamic>? categoriesResponse;
+  List<dynamic>? outputCategories;
 
-  String? _categoryInput;
-  List? categories;
-
-  void onSearchBarChanged() {
-    setState(() {
-      _categoryInput = searchBarController.text;
-    });
-    print(_categoryInput);
-  }
+  // void onSearchBarChanged() {
+  //   setState(() {
+  //     _categoryInput = searchBarController.text;
+  //   });
+  //   print(_categoryInput);
+  // }
 
   Future<List> getCategories() async {
     final response =
@@ -31,13 +29,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
     if (response.statusCode == 200) {
       setState(() {
-        categories = jsonDecode(response.body);
+        categoriesResponse = jsonDecode(response.body);
+        outputCategories = categoriesResponse;
       });
 
       print("fetching clear");
+
       return jsonDecode(response.body);
     } else {
       throw Exception("Fetc Categories Failed");
+    }
+  }
+
+  void search(String input) {
+    final String values = input.toLowerCase();
+
+    if (values.isEmpty || values != "") {
+      final Iterable filteredCategories =
+          categoriesResponse!.where((element) => element.contains(values));
+
+      setState(() {
+        outputCategories = List.from(filteredCategories);
+      });
+    } else {
+      setState(() {
+        outputCategories = categoriesResponse;
+      });
     }
   }
 
@@ -48,9 +65,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     getCategories();
   }
 
+  @override
   Widget build(BuildContext context) {
-    if (categories == null) {
-      return Center(
+    if (outputCategories == null) {
+      return const Center(
         child: CircularProgressIndicator(
           color: Colors.black,
         ),
@@ -65,8 +83,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         child: Column(
           children: [
             SearchBar(
-              controller: searchBarController,
-              onSubmitted: (values) => onSearchBarChanged(),
+              onChanged: (values) => search(values),
+              // onSubmitted: (values) => search(),
               backgroundColor: MaterialStateColor.resolveWith(
                   (states) => Color.fromARGB(233, 233, 233, 233)),
               elevation: MaterialStateProperty.all(0),
@@ -81,7 +99,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 child: Container(
               margin: const EdgeInsets.only(top: 20),
               child: ListView.builder(
-                itemCount: categories!.length,
+                itemCount: outputCategories!.length,
                 itemBuilder: (context, index) {
                   return Container(
                     padding: const EdgeInsets.symmetric(
@@ -90,7 +108,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       onTap: () {
                         Navigator.of(context)
                             .push(AnimationRoute(CategoryScreen(
-                          category: categories![index],
+                          category: outputCategories![index],
                         )));
                       },
                       child: Container(
@@ -107,7 +125,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               child: Row(
                                 children: [
                                   Text(
-                                    categories![index],
+                                    outputCategories![index],
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16),
                                     overflow: TextOverflow.ellipsis,

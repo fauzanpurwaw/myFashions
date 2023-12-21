@@ -102,10 +102,6 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                 color: Colors.white,
                                 onPressed: () {
                                   Navigator.of(context).pop(context);
-                                  Navigator.of(context).push(AnimationRoute(
-                                      Home(),
-                                      dx: -1.0,
-                                      dy: 0.0));
                                 },
                               ),
                             ),
