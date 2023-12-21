@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:latihan_dua/mainScreen/home.dart';
 import 'screens/splash.dart';
+import 'screens/category.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "main",
-      home: Splash(),
+      home: CategoryScreen(category: "smartphones",),
     );
   }
 }
