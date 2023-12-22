@@ -8,9 +8,7 @@ import '../components/searchBar.dart';
 import '../components/header.dart';
 import '../components/firstDispay.dart';
 import 'package:latihan_dua/routes/routes.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:latihan_dua/album/products.dart';
+import 'detail_item.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -133,36 +131,18 @@ class _HomeBodyState extends State<HomeBody> {
   FocusNode _searchBarFocusNode = FocusNode();
   bool _isContainerVisible = false;
 
-  Future<List> fetchData(String keyword) async {
-    setState(() {
-      products = null;
-    });
-
-    final response = await http
-        .get(Uri.parse('https://dummyjson.com/product?search=$keyword'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body)['products'];
-      setState(() {
-        products = data.map((item) => Product.fromJson(item)).toList();
-        print(
-            'Data fetched successfully! -------------------------------------');
-      });
-
-      print(data);
-
-      return data;
-    } else {
-      print('Failed to load data. Status code: ${response.statusCode}');
-      throw Exception("gagal");
-    }
-  }
-
   void setContainerVisibility(bool value) {
     setState(() {
       _isContainerVisible = value;
     });
     print(_isContainerVisible);
+  }
+
+  void setProducts(List value) {
+    setState(() {
+      products = value;
+    });
+    print(products);
   }
 
   @override
@@ -201,58 +181,110 @@ class _HomeBodyState extends State<HomeBody> {
                 child: Column(
                   children: [
                     SearchingBar(
-                      setSelectedIndex: widget.setSelectedIndex,
-                      focusNode: _searchBarFocusNode,
-                      setVisibleContainer: setContainerVisibility,
-                    ),
+                        setSelectedIndex: widget.setSelectedIndex,
+                        focusNode: _searchBarFocusNode,
+                        setVisibleContainer: setContainerVisibility,
+                        setProducts: setProducts),
                     Visibility(
                       visible: _isContainerVisible,
                       child: Container(
-                          color: Colors.amber,
-                          padding: const EdgeInsets.all(10),
-                          constraints: BoxConstraints(
-                              maxHeight:
-                                  MediaQuery.of(context).size.height / 2),
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            children: [
-                              Flexible(
-                                child: Container(
-                                  height: 80,
-                                  child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
+                        padding: const EdgeInsets.all(10),
+                        constraints: BoxConstraints(
+                            maxHeight: MediaQuery.of(context).size.height / 3),
+                        width: MediaQuery.of(context).size.width,
+                        child: products == null
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.black,
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: products!.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 1),
                                     child: InkWell(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20)),
                                       onTap: () {
-                                        // Navigator.of(context).push(AnimationRoute(
-                                        //     ScrDetailItem(
-                                        //         id: products![index].id)));
+                                        print(products![index].id);
+                                        Navigator.of(context).push(
+                                            AnimationRoute(ScrDetailItem(
+                                                id: products![index].id)));
                                         // Navigator.of(context).pop();
                                       },
-                                      child: Flexible(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    "https://i.dummyjson.com/data/products/43/thumbnail.jpg"),
-                                                fit: BoxFit.fill),
+                                      child: Container(
+                                        // color: Colors.blue,
+                                        height: 60,
+                                        child: Card(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(4),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 40,
+                                                  padding:
+                                                      const EdgeInsets.all(5),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                    child: Flexible(
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image: DecorationImage(
+                                                              image: NetworkImage(
+                                                                  products![
+                                                                          index]
+                                                                      .thumbnail),
+                                                              fit: BoxFit.fill),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 4),
+                                                  margin: const EdgeInsets.only(
+                                                      left: 10),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        products![index].title,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 16),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        maxLines: 1,
+                                                      ),
+                                                      Text(
+                                                        products![index]
+                                                            .category,
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
-                            ],
-                          )
-                          // ListView.builder(
-                          //   itemCount: products!.length,
-                          //   itemBuilder: (context, index) {
-                          //     return ListTile();
-                          //   },
-                          ),
+                      ),
                     ),
                   ],
                 ),

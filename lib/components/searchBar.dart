@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:latihan_dua/album/products.dart';
 
 class SearchingBar extends StatefulWidget {
   SearchingBar(
       {super.key,
       required this.setSelectedIndex,
+      required this.setProducts,
       required this.focusNode,
       required this.setVisibleContainer});
 
@@ -12,10 +16,38 @@ class SearchingBar extends StatefulWidget {
 
   final Function setSelectedIndex;
   final Function setVisibleContainer;
+  final Function setProducts;
   final FocusNode focusNode;
 }
 
 class _SearchingBarState extends State<SearchingBar> {
+  List? products;
+
+  Future<List> fetchData(String keyword) async {
+    setState(() {
+      products = null;
+    });
+
+    final response = await http.get(
+        Uri.parse('https://dummyjson.com/product/search?q=$keyword&limit=6'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body)['products'];
+      setState(() {
+        products = data.map((item) => Product.fromJson(item)).toList();
+        print(
+            'Data fetched successfully! -------------------------------------');
+      });
+
+      print(data);
+
+      return data;
+    } else {
+      print('Failed to load data. Status code: ${response.statusCode}');
+      throw Exception("gagal");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,10 +63,16 @@ class _SearchingBarState extends State<SearchingBar> {
               child: Flexible(
                 child: SearchBar(
                   focusNode: widget.focusNode,
-                  onChanged: (value) {
+                  onChanged: (value) async {
                     bool isSearchBarEmpty = value.isEmpty;
-                    // Set the visibility state based on the search bar text
+
                     widget.setVisibleContainer(!isSearchBarEmpty);
+
+                    if (isSearchBarEmpty == false) {
+                      print("object");
+                      await fetchData(value.toLowerCase());
+                    }
+                    widget.setProducts(products);
                   },
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => Color.fromARGB(233, 233, 233, 233)),
