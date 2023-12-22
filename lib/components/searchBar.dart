@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
 
 class SearchingBar extends StatefulWidget {
-  SearchingBar({super.key, required this.setSelectedIndex});
+  SearchingBar(
+      {super.key,
+      required this.setSelectedIndex,
+      required this.focusNode,
+      required this.setVisibleContainer});
 
   @override
   State<SearchingBar> createState() => _SearchingBarState();
 
-  Function setSelectedIndex;
+  final Function setSelectedIndex;
+  final Function setVisibleContainer;
+  final FocusNode focusNode;
 }
 
 class _SearchingBarState extends State<SearchingBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Wrap(
+      color: Colors.white,
+      alignment: Alignment.center,
+      child: Flex(
+        mainAxisAlignment: MainAxisAlignment.center,
+        direction: Axis.horizontal,
         children: [
-          Container(
+          Flexible(
             child: Container(
-              constraints: BoxConstraints(maxWidth: 500),
-              width: MediaQuery.of(context).size.width / 2,
               height: 50,
               child: Flexible(
                 child: SearchBar(
+                  focusNode: widget.focusNode,
+                  onChanged: (value) {
+                    bool isSearchBarEmpty = value.isEmpty;
+                    // Set the visibility state based on the search bar text
+                    widget.setVisibleContainer(!isSearchBarEmpty);
+                  },
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => Color.fromARGB(233, 233, 233, 233)),
                   elevation: MaterialStateProperty.all(0),
@@ -37,7 +51,8 @@ class _SearchingBarState extends State<SearchingBar> {
           ),
           Container(
             margin: const EdgeInsets.only(left: 10),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.black),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50), color: Colors.black),
             child: Ink(
               height: 50,
               width: 50,

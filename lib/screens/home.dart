@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sticky_widgets/flutter_sticky_widgets.dart';
 import 'package:latihan_dua/screens/categories.dart';
 import 'package:latihan_dua/screens/cart.dart';
 import 'package:latihan_dua/screens/profile.dart';
@@ -7,6 +8,9 @@ import '../components/searchBar.dart';
 import '../components/header.dart';
 import '../components/firstDispay.dart';
 import 'package:latihan_dua/routes/routes.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:latihan_dua/album/products.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -122,6 +126,57 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+  List? products;
+
+  late ScrollController _controller;
+
+  FocusNode _searchBarFocusNode = FocusNode();
+  bool _isContainerVisible = false;
+
+  Future<List> fetchData(String keyword) async {
+    setState(() {
+      products = null;
+    });
+
+    final response = await http
+        .get(Uri.parse('https://dummyjson.com/product?search=$keyword'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body)['products'];
+      setState(() {
+        products = data.map((item) => Product.fromJson(item)).toList();
+        print(
+            'Data fetched successfully! -------------------------------------');
+      });
+
+      print(data);
+
+      return data;
+    } else {
+      print('Failed to load data. Status code: ${response.statusCode}');
+      throw Exception("gagal");
+    }
+  }
+
+  void setContainerVisibility(bool value) {
+    setState(() {
+      _isContainerVisible = value;
+    });
+    print(_isContainerVisible);
+  }
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -129,44 +184,117 @@ class _HomeBodyState extends State<HomeBody> {
       alignment: Alignment.center,
       child: Container(
         constraints: const BoxConstraints(maxWidth: 680),
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: <Widget>[
-            Container(
-              alignment: Alignment.centerLeft,
-              height: 100,
-              child: const HeaderScreenOne(),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
-              alignment: Alignment.center,
-              child: SearchingBar(
-                setSelectedIndex: widget.setSelectedIndex,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              height: 190,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: List.generate(5, (index) {
-                  return const SalesBanner();
-                }),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: const FirstDisplay(
-                category: "womens-dresses",
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-              child: const FirstDisplay(
-                category: "mens-shirts",
+        child: StickyContainer(
+          displayOverFlowContent: true,
+          stickyChildren: [
+            StickyWidget(
+              initialPosition: StickyPosition(top: 112, right: 0),
+              finalPosition: StickyPosition(top: 0, right: 0),
+              controller: _controller,
+              child: Container(
+                color: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                width: MediaQuery.of(context).size.width,
+                constraints: BoxConstraints(maxWidth: 680),
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    SearchingBar(
+                      setSelectedIndex: widget.setSelectedIndex,
+                      focusNode: _searchBarFocusNode,
+                      setVisibleContainer: setContainerVisibility,
+                    ),
+                    Visibility(
+                      visible: _isContainerVisible,
+                      child: Container(
+                          color: Colors.amber,
+                          padding: const EdgeInsets.all(10),
+                          constraints: BoxConstraints(
+                              maxHeight:
+                                  MediaQuery.of(context).size.height / 2),
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  height: 80,
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    child: InkWell(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20)),
+                                      onTap: () {
+                                        // Navigator.of(context).push(AnimationRoute(
+                                        //     ScrDetailItem(
+                                        //         id: products![index].id)));
+                                        // Navigator.of(context).pop();
+                                      },
+                                      child: Flexible(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    "https://i.dummyjson.com/data/products/43/thumbnail.jpg"),
+                                                fit: BoxFit.fill),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                          // ListView.builder(
+                          //   itemCount: products!.length,
+                          //   itemBuilder: (context, index) {
+                          //     return ListTile();
+                          //   },
+                          ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
+          child: ListView(
+            controller: _controller,
+            padding: const EdgeInsets.all(20),
+            children: <Widget>[
+              Container(
+                alignment: Alignment.centerLeft,
+                height: 100,
+                child: const HeaderScreenOne(),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 30),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                height: 190,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(5, (index) {
+                    return const SalesBanner();
+                  }),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: const FirstDisplay(
+                  category: "womens-dresses",
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                child: const FirstDisplay(
+                  category: "mens-shirts",
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
