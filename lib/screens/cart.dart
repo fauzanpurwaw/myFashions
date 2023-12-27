@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:latihan_dua/album/cart_item.dart';
+import 'package:latihan_dua/stores/cart.dart';
 
 class CartScreen extends StatefulWidget {
-  final itemName;
-
-  const CartScreen({super.key, this.itemName = "Cart"});
+  const CartScreen({
+    super.key,
+  });
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -45,55 +47,57 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   Container(
                     height: MediaQuery.of(context).size.height * 0.4,
-                    child: ListView(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 5),
-                          height: 100,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(border: Border()),
-                          child: Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                    child: cartItems!.length == 0
+                        ? Visibility(
+                            child: Center(
+                              child: Text('data not found'),
                             ),
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        margin:
-                                            const EdgeInsets.only(right: 20),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: InkWell(
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(20)),
-                                            child: const Image(
-                                                fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                  'assets/images/handbag.jpg',
-                                                )),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                          )
+                        : ListView(
+                            children: List.generate(
+                              cartItems.length,
+                              (index) => Container(
+                                height: 100,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(border: Border()),
+                                child: Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
                                           children: [
+                                            Container(
+                                              width: 60,
+                                              margin: const EdgeInsets.only(
+                                                  right: 20),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(10)),
+                                                child: InkWell(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(20)),
+                                                  child: Image(
+                                                      fit: BoxFit.cover,
+                                                      image: AssetImage(
+                                                        cartItems[index]
+                                                            .thumbnail,
+                                                      )),
+                                                ),
+                                              ),
+                                            ),
                                             Container(
                                               child: Column(
                                                 mainAxisAlignment:
@@ -102,235 +106,119 @@ class _CartScreenState extends State<CartScreen> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
+                                                  Container(
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          cartItems[index]
+                                                              .title,
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          cartItems[index]
+                                                              .category,
+                                                          style: TextStyle(
+                                                            fontSize: 10,
+                                                            color: Colors.grey,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
                                                   Text(
-                                                    "The Marc Jacob",
+                                                    "\$" +
+                                                        numFormat.format(
+                                                            cartItems[index]
+                                                                    .price *
+                                                                cartItems[index]
+                                                                    .qty),
                                                     style: TextStyle(
                                                         fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
-                                                  Text(
-                                                    "Traveller Tote",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  )
                                                 ],
                                               ),
-                                            ),
-                                            Text(
-                                              "\$" +
-                                                  numFormat.format(
-                                                      price * stockCounter),
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                            )
                                           ],
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(Icons.remove_circle)),
                                         Container(
-                                          width: 80,
-                                          height: 20,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(25)),
-                                              color: Color.fromARGB(
-                                                  255, 223, 222, 222)),
-                                          child: Row(
+                                          child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
                                             children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    if (stockCounter != 1) {
-                                                      stockCounter--;
-                                                    }
-                                                  });
-                                                },
-                                                child: Text("-"),
-                                              ),
-                                              Text(stockCounter.toString()),
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    if (stockCounter != 15) {
-                                                      stockCounter++;
-                                                    }
-                                                  });
-                                                },
-                                                child: Text("+"),
+                                              IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                      Icons.remove_circle)),
+                                              Container(
+                                                width: 80,
+                                                height: 20,
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10),
+                                                decoration: const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                25)),
+                                                    color: Color.fromARGB(
+                                                        255, 223, 222, 222)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          if (stockCounter !=
+                                                              1) {
+                                                            stockCounter--;
+                                                          }
+                                                        });
+                                                      },
+                                                      child: Text("-"),
+                                                    ),
+                                                    Text(stockCounter
+                                                        .toString()),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          if (stockCounter !=
+                                                              15) {
+                                                            stockCounter++;
+                                                          }
+                                                        });
+                                                      },
+                                                      child: Text("+"),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
-                                        ),
+                                        )
                                       ],
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 100,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(border: Border()),
-                          child: Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 60,
-                                        margin:
-                                            const EdgeInsets.only(right: 20),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: InkWell(
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(20)),
-                                            child: const Image(
-                                                fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                  'assets/images/handbag.jpg',
-                                                )),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "The Marc Jacob",
-                                                    style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  Text(
-                                                    "Traveller Tote",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Text(
-                                              "\$" +
-                                                  numFormat.format(
-                                                      price * stockCounter),
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
                                   ),
-                                  Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        IconButton(
-                                            onPressed: () {},
-                                            icon: Icon(Icons.remove_circle)),
-                                        Container(
-                                          width: 80,
-                                          height: 20,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(25)),
-                                              color: Color.fromARGB(
-                                                  255, 223, 222, 222)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    if (stockCounter != 1) {
-                                                      stockCounter--;
-                                                    }
-                                                  });
-                                                },
-                                                child: Text("-"),
-                                              ),
-                                              Text(stockCounter.toString()),
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    if (stockCounter != 15) {
-                                                      stockCounter++;
-                                                    }
-                                                  });
-                                                },
-                                                child: Text("+"),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
+                  ),
                 ],
               ),
               Flexible(
@@ -424,7 +312,19 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       Container(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            CartItem item = CartItem(
+                                id: 1,
+                                title: "title",
+                                category: "category",
+                                qty: 1,
+                                thumbnail: "assets/images/handbag.jpg",
+                                price: 1);
+                            setState(() {
+                              addItem(item);
+                            });
+                            print(cartItems);
+                          },
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             margin: const EdgeInsets.only(bottom: 20),

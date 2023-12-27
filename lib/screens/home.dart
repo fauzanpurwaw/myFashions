@@ -138,7 +138,7 @@ class _HomeBodyState extends State<HomeBody> {
     print(_isContainerVisible);
   }
 
-  void setProducts(List value) {
+  void setProducts(List? value) {
     setState(() {
       products = value;
     });
@@ -198,92 +198,110 @@ class _HomeBodyState extends State<HomeBody> {
                                   color: Colors.black,
                                 ),
                               )
-                            : ListView.builder(
-                                itemCount: products!.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 1),
-                                    child: InkWell(
-                                      onTap: () {
-                                        print(products![index].id);
-                                        Navigator.of(context).push(
-                                            AnimationRoute(ScrDetailItem(
-                                                id: products![index].id)));
-                                        // Navigator.of(context).pop();
-                                      },
-                                      child: Container(
-                                        // color: Colors.blue,
-                                        height: 60,
-                                        child: Card(
+                            : products!.length == 0
+                                ? Center(
+                                    child: Text(
+                                      "Data not found",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    itemCount: products!.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 1),
+                                        child: InkWell(
+                                          onTap: () {
+                                            print(products![index].id);
+                                            Navigator.of(context).push(
+                                                AnimationRoute(ScrDetailItem(
+                                                    id: products![index].id)));
+                                            // Navigator.of(context).pop();
+                                          },
                                           child: Container(
-                                            padding: const EdgeInsets.all(4),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  width: 40,
-                                                  padding:
-                                                      const EdgeInsets.all(5),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(5)),
-                                                    child: Flexible(
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: NetworkImage(
-                                                                  products![
-                                                                          index]
-                                                                      .thumbnail),
-                                                              fit: BoxFit.fill),
+                                            // color: Colors.blue,
+                                            height: 60,
+                                            child: Card(
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(4),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 40,
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              5),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5)),
+                                                        child: Flexible(
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              image: DecorationImage(
+                                                                  image: NetworkImage(
+                                                                      products![
+                                                                              index]
+                                                                          .thumbnail),
+                                                                  fit: BoxFit
+                                                                      .fill),
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(vertical: 4),
-                                                  margin: const EdgeInsets.only(
-                                                      left: 10),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        products![index].title,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 16),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        maxLines: 1,
+                                                    Container(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          vertical: 4),
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            products![index]
+                                                                .title,
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 16),
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            maxLines: 1,
+                                                          ),
+                                                          Text(
+                                                            products![index]
+                                                                .category,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .grey),
+                                                          )
+                                                        ],
                                                       ),
-                                                      Text(
-                                                        products![index]
-                                                            .category,
-                                                        style: TextStyle(
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                                      );
+                                    },
+                                  ),
                       ),
                     ),
                   ],

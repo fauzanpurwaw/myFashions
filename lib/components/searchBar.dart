@@ -39,8 +39,6 @@ class _SearchingBarState extends State<SearchingBar> {
             'Data fetched successfully! -------------------------------------');
       });
 
-      print(data);
-
       return data;
     } else {
       print('Failed to load data. Status code: ${response.statusCode}');
@@ -69,7 +67,7 @@ class _SearchingBarState extends State<SearchingBar> {
                     widget.setVisibleContainer(!isSearchBarEmpty);
 
                     if (isSearchBarEmpty == false) {
-                      print("object");
+                      widget.setProducts(null);
                       await fetchData(value.toLowerCase());
                     }
                     widget.setProducts(products);
