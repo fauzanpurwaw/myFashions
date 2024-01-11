@@ -228,6 +228,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                 padding:
                                                     const EdgeInsets.all(4),
                                                 child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                       width: 40,
@@ -256,9 +257,6 @@ class _HomeBodyState extends State<HomeBody> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 4),
                                                       margin:
                                                           const EdgeInsets.only(
                                                               left: 10),
@@ -277,7 +275,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                fontSize: 16),
+                                                                fontSize: 14),
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,
