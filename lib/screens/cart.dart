@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:latihan_dua/album/cart_item.dart';
-import 'package:latihan_dua/stores/cart.dart';
+// import 'package:latihan_dua/stores/cart.dart';
+import 'package:latihan_dua/controllers/cart_controller.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({
@@ -20,6 +22,9 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    return Consumer<MyCart>(builder: (context, value, child) => ,)
+
     return Container(
       color: Colors.white,
       alignment: Alignment.center,

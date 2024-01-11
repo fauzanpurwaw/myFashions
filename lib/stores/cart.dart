@@ -1,5 +1,10 @@
 import 'package:latihan_dua/album/cart_item.dart';
 
+
+class MyCart {
+  
+}
+
 List<CartItem> cartItems = [];
 
 void addItem(CartItem value) {
