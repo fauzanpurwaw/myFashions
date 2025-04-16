@@ -47,7 +47,7 @@ class SalesBanner extends StatelessWidget {
                             borderRadius: BorderRadius.circular(50),
                           ),
                           backgroundColor: Colors.black),
-                      child: Text(
+                      child: const Text(
                         "Get Now",
                         style: TextStyle(color: Colors.white),
                       ))

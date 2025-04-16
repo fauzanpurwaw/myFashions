@@ -9,11 +9,11 @@ List<CartItem> cartItems = [];
 
 void addItem(CartItem value) {
   var isDeclared = false;
-  cartItems.forEach((element) {
+  for (var element in cartItems) {
     if (element.id == value.id) {
       isDeclared = true;
     }
-  });
+  }
 
   if (isDeclared) {
     cartItems.add(value);

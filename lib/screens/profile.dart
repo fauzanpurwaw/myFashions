@@ -14,7 +14,7 @@ class _ScrProfileState extends State<ScrProfile> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: widget.itemName,
-      theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
+      theme: ThemeData(appBarTheme: const AppBarTheme(color: Colors.white)),
       home: Scaffold(
         appBar: AppBar(
             toolbarHeight: 80,
@@ -58,7 +58,7 @@ class _ScrProfileState extends State<ScrProfile> {
         body: Container(
           alignment: Alignment.center,
           child: Container(
-            constraints: BoxConstraints(maxWidth: 680),
+            constraints: const BoxConstraints(maxWidth: 680),
             child: ListView(
               children: [
                 Container(
@@ -69,7 +69,7 @@ class _ScrProfileState extends State<ScrProfile> {
                       Container(
                         height: 120,
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(border: Border()),
+                        decoration: const BoxDecoration(border: Border()),
                         child: Card(
                           elevation: 10,
                           shape: RoundedRectangleBorder(
@@ -84,13 +84,13 @@ class _ScrProfileState extends State<ScrProfile> {
                                   margin: const EdgeInsets.only(right: 20),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10)),
-                                  child: ClipRRect(
-                                    borderRadius: const BorderRadius.all(
+                                  child: const ClipRRect(
+                                    borderRadius: BorderRadius.all(
                                         Radius.circular(10)),
                                     child: InkWell(
-                                      borderRadius: const BorderRadius.all(
+                                      borderRadius: BorderRadius.all(
                                           Radius.circular(20)),
-                                      child: const Image(
+                                      child: Image(
                                           fit: BoxFit.cover,
                                           image: AssetImage(
                                             'assets/images/handbag.jpg',
@@ -98,9 +98,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   height: 50,
-                                  child: Column(
+                                  child: const Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
@@ -126,9 +126,9 @@ class _ScrProfileState extends State<ScrProfile> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(border: Border()),
+                        decoration: const BoxDecoration(border: Border()),
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -151,9 +151,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                         Container(
                                           margin:
                                               const EdgeInsets.only(right: 20),
-                                          child: Icon(Icons.person_2),
+                                          child: const Icon(Icons.person_2),
                                         ),
-                                        Text(
+                                        const Text(
                                           "Personal Details",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -162,7 +162,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -180,9 +180,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                           margin:
                                               const EdgeInsets.only(right: 20),
                                           child:
-                                              Icon(Icons.shopping_bag_rounded),
+                                              const Icon(Icons.shopping_bag_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "My Order",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -191,7 +191,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -208,9 +208,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                         Container(
                                           margin:
                                               const EdgeInsets.only(right: 20),
-                                          child: Icon(Icons.favorite_rounded),
+                                          child: const Icon(Icons.favorite_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "Favorites",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -219,7 +219,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -237,9 +237,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                           margin:
                                               const EdgeInsets.only(right: 20),
                                           child:
-                                              Icon(Icons.credit_card_rounded),
+                                              const Icon(Icons.credit_card_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "My Card",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -248,7 +248,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -265,9 +265,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                         Container(
                                           margin:
                                               const EdgeInsets.only(right: 20),
-                                          child: Icon(Icons.settings_rounded),
+                                          child: const Icon(Icons.settings_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "Settings",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -276,7 +276,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                               ],
@@ -285,9 +285,9 @@ class _ScrProfileState extends State<ScrProfile> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(border: Border()),
+                        decoration: const BoxDecoration(border: Border()),
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
@@ -312,9 +312,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                           Container(
                                             margin: const EdgeInsets.only(
                                                 right: 20),
-                                            child: Icon(Icons.person_2),
+                                            child: const Icon(Icons.person_2),
                                           ),
-                                          Text(
+                                          const Text(
                                             "Personal Details",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
@@ -324,7 +324,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                       IconButton(
                                           onPressed: () {},
                                           icon:
-                                              Icon(Icons.chevron_right_rounded))
+                                              const Icon(Icons.chevron_right_rounded))
                                     ],
                                   ),
                                 ),
@@ -343,9 +343,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                           margin:
                                               const EdgeInsets.only(right: 20),
                                           child:
-                                              Icon(Icons.shopping_bag_rounded),
+                                              const Icon(Icons.shopping_bag_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "My Order",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -354,7 +354,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -371,9 +371,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                         Container(
                                           margin:
                                               const EdgeInsets.only(right: 20),
-                                          child: Icon(Icons.favorite_rounded),
+                                          child: const Icon(Icons.favorite_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "Favorites",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -382,7 +382,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -400,9 +400,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                           margin:
                                               const EdgeInsets.only(right: 20),
                                           child:
-                                              Icon(Icons.credit_card_rounded),
+                                              const Icon(Icons.credit_card_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "My Card",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -411,7 +411,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                                 Row(
@@ -428,9 +428,9 @@ class _ScrProfileState extends State<ScrProfile> {
                                         Container(
                                           margin:
                                               const EdgeInsets.only(right: 20),
-                                          child: Icon(Icons.settings_rounded),
+                                          child: const Icon(Icons.settings_rounded),
                                         ),
-                                        Text(
+                                        const Text(
                                           "Settings",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
@@ -439,7 +439,7 @@ class _ScrProfileState extends State<ScrProfile> {
                                     ),
                                     IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.chevron_right_rounded))
+                                        icon: const Icon(Icons.chevron_right_rounded))
                                   ],
                                 ),
                               ],

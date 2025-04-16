@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:latihan_dua/album/products.dart';
 
 class SearchingBar extends StatefulWidget {
-  SearchingBar(
+  const SearchingBar(
       {super.key,
       required this.setSelectedIndex,
       required this.setProducts,
@@ -56,7 +56,7 @@ class _SearchingBarState extends State<SearchingBar> {
         direction: Axis.horizontal,
         children: [
           Flexible(
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: Flexible(
                 child: SearchBar(
@@ -72,15 +72,15 @@ class _SearchingBarState extends State<SearchingBar> {
                     }
                     widget.setProducts(products);
                   },
-                  backgroundColor: MaterialStateColor.resolveWith(
-                      (states) => Color.fromARGB(233, 233, 233, 233)),
-                  elevation: MaterialStateProperty.all(0),
+                  backgroundColor: WidgetStateColor.resolveWith(
+                      (states) => const Color.fromARGB(233, 233, 233, 233)),
+                  elevation: WidgetStateProperty.all(0),
                   hintText: "Search...",
                   leading: const Icon(Icons.search),
-                  padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(horizontal: 20)),
+                  padding: WidgetStateProperty.all(
+                      const EdgeInsets.symmetric(horizontal: 20)),
                   hintStyle:
-                      MaterialStateProperty.all(TextStyle(color: Colors.grey)),
+                      WidgetStateProperty.all(const TextStyle(color: Colors.grey)),
                 ),
               ),
             ),

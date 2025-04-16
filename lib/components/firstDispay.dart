@@ -17,7 +17,7 @@ class FirstDisplay extends StatefulWidget {
 }
 
 class _FirstDisplayState extends State<FirstDisplay> {
-  List? products;
+  List<dynamic>? products;
 
   Future<List> fetchData() async {
     final response = await http.get(
@@ -26,6 +26,8 @@ class _FirstDisplayState extends State<FirstDisplay> {
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body)['products'];
       setState(() {
+        print('test print');
+        print(data);
         products = data.map((item) => Product.fromJson(item)).toList();
         print(
             'Data fetched successfully! -------------------------------------');
@@ -40,7 +42,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
     }
   }
 
-  final numFormat = new NumberFormat("#,##0.00", "en_US");
+  final numFormat = NumberFormat("#,##0.00", "en_US");
 
   @override
   void initState() {
@@ -62,7 +64,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
             children: [
               Text(
                 widget.category.toUpperCase(),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               TextButton(
                   onPressed: () {
@@ -77,14 +79,14 @@ class _FirstDisplayState extends State<FirstDisplay> {
           ),
         ),
         Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             height: MediaQuery.of(context).size.width / 3 * 2.2,
             child: products == null
                 ? Wrap(
                     children: [
                       Container(
                         margin: const EdgeInsets.only(top: 40),
-                        child: CircularProgressIndicator(
+                        child: const CircularProgressIndicator(
                           color: Colors.black,
                         ),
                       )
@@ -97,7 +99,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                       childAspectRatio: .5,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20,
-                      physics: RangeMaintainingScrollPhysics(),
+                      physics: const RangeMaintainingScrollPhysics(),
                       children: List.generate(
                         products!.length,
                         (index) {
@@ -110,7 +112,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                   child: Container(
                                     child: ClipRRect(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(20)),
+                                          const BorderRadius.all(Radius.circular(20)),
                                       child: InkWell(
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(20)),
@@ -140,7 +142,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 4),
-                                  constraints: BoxConstraints(maxHeight: 70),
+                                  constraints: const BoxConstraints(maxHeight: 70),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -162,7 +164,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                             },
                                             child: Text(
                                               products![index].title.toString(),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14),
                                               maxLines: 1,
@@ -174,7 +176,7 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                               products![index]
                                                   .category
                                                   .toString(),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.grey,
                                                   fontSize: 11),
@@ -184,10 +186,9 @@ class _FirstDisplayState extends State<FirstDisplay> {
                                       ),
                                       Container(
                                         child: Text(
-                                          "\$" +
-                                              numFormat.format(
-                                                  products![index].price),
-                                          style: TextStyle(
+                                          "\$${numFormat.format(
+                                                  products![index].price)}",
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.w900,
                                               fontSize: 14),
                                         ),

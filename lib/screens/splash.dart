@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
     super.initState();
     Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pop(const Splash());
-      Navigator.of(context).push(AnimationRoute(Home()));
+      Navigator.of(context).push(AnimationRoute(const Home()));
     });
   }
 

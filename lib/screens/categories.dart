@@ -25,7 +25,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   Future<List> getCategories() async {
     final response =
-        await http.get(Uri.parse('https://dummyjson.com/products/categories'));
+        await http.get(Uri.parse('https://dummyjson.com/products/category-list'));
 
     if (response.statusCode == 200) {
       setState(() {

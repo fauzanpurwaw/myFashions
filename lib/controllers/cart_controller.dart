@@ -10,11 +10,11 @@ class MyCart extends ChangeNotifier {
 
   void addItem(CartItem value) {
     var isDeclared = false;
-    cartList.forEach((element) {
+    for (var element in cartList) {
       if (element.id == value.id) {
         isDeclared = true;
       }
-    });
+    }
 
     if (isDeclared) {
       cartList.add(value);

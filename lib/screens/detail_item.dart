@@ -42,8 +42,9 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
     }
   }
 
-  final numFormat = new NumberFormat("#,##0.00", "en_US");
+  final numFormat = NumberFormat("#,##0.00", "en_US");
 
+  @override
   void initState() {
     super.initState();
     print('Init State Run');
@@ -66,12 +67,12 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: product!.title,
-      theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
+      theme: ThemeData(appBarTheme: const AppBarTheme(color: Colors.white)),
       home: Scaffold(
         body: Container(
           alignment: Alignment.center,
           child: Container(
-            constraints: BoxConstraints(maxWidth: 680),
+            constraints: const BoxConstraints(maxWidth: 680),
             child: ListView(children: [
               Stack(
                 alignment: Alignment.bottomCenter,
@@ -89,7 +90,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                 image: NetworkImage(product!.thumbnail),
                                 fit: BoxFit.cover)),
                         child: Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 18),
                           alignment: Alignment.topLeft,
                           child: InkWell(
@@ -129,7 +130,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Flexible(
-                                child: Container(
+                                child: SizedBox(
                                   height: 80,
                                   child: Column(
                                     mainAxisAlignment:
@@ -139,7 +140,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                     children: [
                                       Text(
                                         product!.title,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                         maxLines: 1,
@@ -147,7 +148,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                       ),
                                       Text(
                                         product!.category,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.normal,
                                             color: Colors.grey),
@@ -186,7 +187,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                           ),
                                           Text(
                                             product!.rating.toString(),
-                                            style: TextStyle(fontSize: 12),
+                                            style: const TextStyle(fontSize: 12),
                                           ),
                                         ],
                                       ),
@@ -196,7 +197,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                               ),
                               Wrap(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 80,
                                     child: Column(
                                       mainAxisAlignment:
@@ -224,7 +225,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                                     }
                                                   });
                                                 },
-                                                child: Text("-"),
+                                                child: const Text("-"),
                                               ),
                                               Text(stockCounter.toString()),
                                               InkWell(
@@ -236,7 +237,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                                     }
                                                   });
                                                 },
-                                                child: Text("+"),
+                                                child: const Text("+"),
                                               ),
                                             ],
                                           ),
@@ -260,14 +261,14 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                             children: [
                               Container(
                                 height: 90,
-                                margin: EdgeInsets.only(top: 20),
+                                margin: const EdgeInsets.only(top: 20),
                                 width: 100,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Color",
                                       style: TextStyle(
                                           fontSize: 20,
@@ -320,7 +321,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                                                   color: Colors.grey, width: 2),
                                               color: Colors.black,
                                             ),
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.check,
                                               color: Colors.grey,
                                             ),
@@ -340,7 +341,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                               Flexible(
                                 child: Container(
                                   height: 90,
-                                  margin: EdgeInsets.only(top: 20),
+                                  margin: const EdgeInsets.only(top: 20),
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -374,7 +375,7 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
           ),
         ),
         bottomNavigationBar: Container(
-          constraints: BoxConstraints(maxWidth: 680),
+          constraints: const BoxConstraints(maxWidth: 680),
           padding: const EdgeInsets.symmetric(horizontal: 25),
           height: 90,
           child: Column(
@@ -386,13 +387,13 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Total Price",
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       Text(
-                        "\$" + numFormat.format(product!.price * stockCounter),
-                        style: TextStyle(
+                        "\$${numFormat.format(product!.price * stockCounter)}",
+                        style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -411,12 +412,12 @@ class _ScrDetailItemState extends State<ScrDetailItem> {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(right: 6),
-                            child: Icon(
+                            child: const Icon(
                               Icons.shopping_bag_outlined,
                               color: Colors.white,
                             ),
                           ),
-                          Text(
+                          const Text(
                             "Add to cart",
                             style: TextStyle(
                                 fontSize: 20,

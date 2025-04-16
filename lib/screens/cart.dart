@@ -18,7 +18,7 @@ class _CartScreenState extends State<CartScreen> {
   int stockCounter = 1;
   int price = 198;
 
-  final numFormat = new NumberFormat("#,##0.00", "en_US");
+  final numFormat = NumberFormat("#,##0.00", "en_US");
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _CartScreenState extends State<CartScreen> {
         color: Colors.white,
         alignment: Alignment.center,
         child: Container(
-          constraints: BoxConstraints(maxWidth: 680),
+          constraints: const BoxConstraints(maxWidth: 680),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Container(
@@ -41,16 +41,16 @@ class _CartScreenState extends State<CartScreen> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 2),
                       margin: const EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
+                      child: const Text(
                         "My Cart",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.4,
-                      child: cartItems!.length == 0
-                          ? Visibility(
+                      child: cartItems!.isEmpty
+                          ? const Visibility(
                               child: Center(
                                 child: Text('data not found'),
                               ),
@@ -61,7 +61,7 @@ class _CartScreenState extends State<CartScreen> {
                                 (index) => Container(
                                   height: 100,
                                   width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(border: Border()),
+                                  decoration: const BoxDecoration(border: Border()),
                                   child: Card(
                                     elevation: 5,
                                     shape: RoundedRectangleBorder(
@@ -121,7 +121,7 @@ class _CartScreenState extends State<CartScreen> {
                                                           Text(
                                                             cartItems[index]
                                                                 .title,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
@@ -130,7 +130,7 @@ class _CartScreenState extends State<CartScreen> {
                                                           Text(
                                                             cartItems[index]
                                                                 .category,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                               fontSize: 10,
                                                               color:
                                                                   Colors.grey,
@@ -140,14 +140,13 @@ class _CartScreenState extends State<CartScreen> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "\$" +
-                                                          numFormat.format(
+                                                      "\$${numFormat.format(
                                                               cartItems[index]
                                                                       .price *
                                                                   cartItems[
                                                                           index]
-                                                                      .qty),
-                                                      style: TextStyle(
+                                                                      .qty)}",
+                                                      style: const TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -167,7 +166,7 @@ class _CartScreenState extends State<CartScreen> {
                                               children: [
                                                 IconButton(
                                                     onPressed: () {},
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                         Icons.remove_circle)),
                                                 Container(
                                                   width: 80,
@@ -201,7 +200,7 @@ class _CartScreenState extends State<CartScreen> {
                                                             }
                                                           });
                                                         },
-                                                        child: Text("-"),
+                                                        child: const Text("-"),
                                                       ),
                                                       Text(stockCounter
                                                           .toString()),
@@ -214,7 +213,7 @@ class _CartScreenState extends State<CartScreen> {
                                                             }
                                                           });
                                                         },
-                                                        child: Text("+"),
+                                                        child: const Text("+"),
                                                       ),
                                                     ],
                                                   ),
@@ -244,7 +243,7 @@ class _CartScreenState extends State<CartScreen> {
                           child: Column(
                             children: [
                               Container(
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
@@ -264,7 +263,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                               ),
                               Container(
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
@@ -288,7 +287,7 @@ class _CartScreenState extends State<CartScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Subtotal:",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -299,7 +298,7 @@ class _CartScreenState extends State<CartScreen> {
                                         Container(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 8),
-                                          child: Text(
+                                          child: const Text(
                                             "(2 items)",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.normal,
@@ -307,7 +306,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 color: Colors.grey),
                                           ),
                                         ),
-                                        Text(
+                                        const Text(
                                           "\$413",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
@@ -342,12 +341,12 @@ class _CartScreenState extends State<CartScreen> {
                               margin: const EdgeInsets.only(bottom: 20),
                               width: MediaQuery.of(context).size.width,
                               height: 50,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 color: Colors.black,
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [

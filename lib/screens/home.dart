@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "E-Commerce",
-      theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.white)),
+      theme: ThemeData(appBarTheme: const AppBarTheme(color: Colors.white)),
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 80,
@@ -128,7 +128,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   late ScrollController _controller;
 
-  FocusNode _searchBarFocusNode = FocusNode();
+  final FocusNode _searchBarFocusNode = FocusNode();
   bool _isContainerVisible = false;
 
   void setContainerVisibility(bool value) {
@@ -176,7 +176,7 @@ class _HomeBodyState extends State<HomeBody> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 width: MediaQuery.of(context).size.width,
-                constraints: BoxConstraints(maxWidth: 680),
+                constraints: const BoxConstraints(maxWidth: 680),
                 alignment: Alignment.center,
                 child: Column(
                   children: [
@@ -193,13 +193,13 @@ class _HomeBodyState extends State<HomeBody> {
                             maxHeight: MediaQuery.of(context).size.height / 3),
                         width: MediaQuery.of(context).size.width,
                         child: products == null
-                            ? Center(
+                            ? const Center(
                                 child: CircularProgressIndicator(
                                   color: Colors.black,
                                 ),
                               )
-                            : products!.length == 0
-                                ? Center(
+                            : products!.isEmpty
+                                ? const Center(
                                     child: Text(
                                       "Data not found",
                                       style: TextStyle(
@@ -220,7 +220,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                     id: products![index].id)));
                                             // Navigator.of(context).pop();
                                           },
-                                          child: Container(
+                                          child: SizedBox(
                                             // color: Colors.blue,
                                             height: 60,
                                             child: Card(
@@ -237,7 +237,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                               5),
                                                       child: ClipRRect(
                                                         borderRadius:
-                                                            BorderRadius.all(
+                                                            const BorderRadius.all(
                                                                 Radius.circular(
                                                                     5)),
                                                         child: Flexible(
@@ -271,7 +271,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                           Text(
                                                             products![index]
                                                                 .title,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
@@ -284,7 +284,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                           Text(
                                                             products![index]
                                                                 .category,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color: Colors
                                                                     .grey),
                                                           )

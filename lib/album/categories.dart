@@ -1,19 +1,19 @@
 class Category {
   final int id;
-  final String title;
-  final String category;
+  final String name;
+  final String slug;
 
   Category({
     required this.id,
-    required this.title,
-    required this.category,
+    required this.name,
+    required this.slug,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       id: json['id'],
-      title: json['title'],
-      category: json['category'],
+      name: json['name'],
+      slug: json['slug'],
     );
   }
 }
